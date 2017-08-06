@@ -4,7 +4,6 @@
 #include <QAbstractTableModel>
 #include <functional>
 
-#include "Hash.h"
 #include "ModelDataAdapter.h"
 
 template<class Container,
@@ -13,6 +12,8 @@ class TableModel: public QAbstractTableModel,
         public ModelDataAdapter<Value>
 {
 public:
+    using value_type = Value;
+
     explicit TableModel(QObject *parent = 0):
         QAbstractTableModel(parent) {}
 
@@ -129,6 +130,7 @@ private:
 
     int             m_column_count = 0;
     Container       container;
+    QMap<int, QMap<int, QVariant>> headers;
 };
 
 #endif // TABLEMODEL_H
