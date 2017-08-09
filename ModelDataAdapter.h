@@ -13,15 +13,30 @@ public:
     typedef std::function<QVariant(const Value &)> GetterType;
     typedef std::function<bool(Value &, const QVariant &)> SetterType;
 
+    ///add getter to column and role
+    ///const member function
     template<class R>
     void                    addGetter(int column,
                                       int role,
                                       R (Value::*m)() const)
     {
-        columnGetters[column].insert(role, std::bind(m, std::placeholders::_1));
+        columnGetters[column].insert(role, std::mem_fn(m));
         columnManipulatorAdded(column);
     }
 
+    ///add getter to column and role
+    ///member
+    template<class T>
+    void                    addGetter(int column,
+                                      int role,
+                                      T Value::*m)
+    {
+        columnGetters[column].insert(role, std::mem_fn(m));
+        columnManipulatorAdded(column);
+    }
+
+    ///add getter to column and role
+    ///function/functor/lambda
     template<class Function>
     void                    addGetter(int column,
                                       int role,

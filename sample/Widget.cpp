@@ -24,8 +24,8 @@ public:
     ContentItem(const ContentItemData &data):
         TreeModelCustomItem(data)
     {
-        addGetter(0, Qt::DisplayRole, [](const ContentItemData &data){return data.name;});
-        addGetter(1, Qt::DisplayRole, [](const ContentItemData &data){return data.page;});
+        addGetter(0, Qt::DisplayRole, &ContentItemData::name);
+        addGetter(1, Qt::DisplayRole, &ContentItemData::page);
     }
 };
 
