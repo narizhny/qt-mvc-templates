@@ -26,6 +26,14 @@ i->addCheckingSetter(0, Qt::EditRole, [](Type &t, const QString &value) -> bool 
 auto *m = new TreeModel();
 m->getRootItem()->appendChild(i);
 ```
+You can add or remove items without calling beginInsertRows, beginRemoveRows etc.
+You should set column count in root item.
+
+#### TreeModelCustomItem
+Template-based item, to get column/role value by lambda/member pointer
+
+#### TreeModelStandardItem
+Item to set values in column/role implicitly.
 
 ### Table
 
@@ -39,3 +47,5 @@ tableModel->setValues(sl);
 tableModel->addGetter(0, Qt::DisplayRole, [](const QString &value){return value;});
 tableModel->addGetter(1, Qt::ToolTipRole, &QString::size);
 ```
+
+You can add or remove rows without calling beginInsertRows, beginRemoveRows etc.
