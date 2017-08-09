@@ -41,11 +41,11 @@ private:
 };
 
 template<class Value>
-class TreeModelCustomPtrItem: public TreeModelItem,
+class TreeModelCustomItem<Value *>: public TreeModelItem,
                                     public ModelDataAdapter<Value>
 {
 public:
-    explicit TreeModelCustomPtrItem(Value *value):
+    explicit TreeModelCustomItem(Value *value):
         TreeModelItem(0),
         value(value) {}
 
