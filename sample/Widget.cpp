@@ -40,7 +40,7 @@ Widget::Widget(QWidget *parent):
     tableView->setModel(tableModel);
     tableModel->setHeaderData(0, Qt::Horizontal, "Text", Qt::DisplayRole);
     tableModel->setHeaderData(1, Qt::Horizontal, "Text size", Qt::DisplayRole);
-    tableModel->addGetter(0, Qt::DisplayRole, [](const QString &data){return data;});
+    tableModel->addGetter(0, Qt::DisplayRole);
     tableModel->addGetter(0, Qt::ToolTipRole, [](const QString &data){return "Size = " + data;});
     tableModel->addGetter(1, Qt::DisplayRole, &QString::size);
     tableModel->setValues(QStringList() << "One" << "Two" << "Three");

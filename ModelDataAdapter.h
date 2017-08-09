@@ -14,6 +14,15 @@ public:
     typedef std::function<bool(Value &, const QVariant &)> SetterType;
 
     ///add getter to column and role
+    ///return same value
+    void                    addGetter(int column,
+                                      int role)
+    {
+        columnGetters[column].insert(role, [](const Value &v){return v;});
+        columnManipulatorAdded(column);
+    }
+
+    ///add getter to column and role
     ///const member function
     template<class R>
     void                    addGetter(int column,
